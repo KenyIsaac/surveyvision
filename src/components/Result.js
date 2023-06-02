@@ -1,9 +1,10 @@
 import React from 'react';
 
 const Result = ({ name, results }) => {
-  const totalQuestions = results.length;
-  const positiveAnswers = results.filter((answer) => answer === 'positivo')
-    .length;
+  const totalQuestions = results ? results.length : 0;
+  const positiveAnswers = results
+    ? results.filter((answer) => answer === 'positivo').length
+    : 0;
 
   return (
     <div>
