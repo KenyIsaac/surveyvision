@@ -1,36 +1,60 @@
 .container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f7f7ff;
 }
 
-.header {
-  text-align: center;
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #4e4e6d;
   margin-bottom: 20px;
 }
 
-.form-group {
+.question {
+  font-size: 20px;
+  color: #4e4e6d;
+  margin-bottom: 20px;
+}
+
+.options-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.option-item {
   margin-bottom: 10px;
 }
 
+input[type='radio'] {
+  margin-right: 10px;
+}
+
 label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
+  font-size: 16px;
+  color: #4e4e6d;
 }
 
-input[type="text"] {
-  width: 100%;
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-button {
+.next-button {
   padding: 10px 20px;
-  background-color: #4CAF50;
-  color: white;
+  background-color: #ff9cc2;
   border: none;
-  border-radius: 5px;
+  color: white;
+  font-size: 16px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.next-button:hover {
+  background-color: #ff7497;
+}
+
+.results-message {
+  font-size: 24px;
+  font-weight: bold;
+  color: #4e4e6d;
 }
