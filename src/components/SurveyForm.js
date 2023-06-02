@@ -1,36 +1,41 @@
 import React, { useState } from 'react';
 import InputField from './InputField';
+import LoadingScreen from './LoadingScreen';
+import Result from './Result';
 
 const SurveyForm = ({ onSubmit }) => {
-  const [answers, setAnswers] = useState([]);
-  const questions = [
-    // Aquí puedes agregar tus 20 preguntas
-  ];
-
-  const handleAnswerChange = (questionIndex, answer) => {
-    const updatedAnswers = [...answers];
-    updatedAnswers[questionIndex] = answer;
-    setAnswers(updatedAnswers);
-  };
+  const [name, setName] = useState('');
+  const [age, setAge] = useState('');
+  const [occupation, setOccupation] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(answers);
+    setIsLoading(true);
+    // Simulación de una llamada asincrónica
+    setTimeout(() => {
+      setIsLoading(false);
+      setIsSubmitted(true);
+      onSubmit({ name, age, occupation });
+    }, 3000);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Encuesta</h2>
-      {questions.map((question, index) => (
-        <div key={index}>
-          <h3>{question}</h3>
-          <InputField
-            onChange={(answer) => handleAnswerChange(index, answer)}
-          />
-        </div>
-      ))}
-      <button type="submit">Finalizar Encuesta</button>
-    </form>
+    <div>
+      {isLoading ? (
+        <LoadingScreen />
+      ) : isSubmitted ? (
+        <Result name={name} age={age} occupation={occupation} />
+      ) : (
+        <form onSubmit={handleSubmit}>
+          <InputField label="Nombre" value={name} onChange={(e) => setName(e.target.value)} />
+          <InputField label="Edad" value={age} onChange={(e) => setAge(e.target.value)} />
+          <InputField label="Ocupación" value={occupation} onChange={(e) => setOccupation(e.target.value)} />
+          <button type="submit">Enviar</button>
+        </form>
+      )}
+    </div>
   );
 };
 

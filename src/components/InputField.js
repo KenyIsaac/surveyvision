@@ -1,16 +1,11 @@
 import React from 'react';
 
-const InputField = ({ onChange }) => {
-  const handleInputChange = (e) => {
-    onChange(e.target.value);
-  };
-
+const InputField = ({ label, value, onChange }) => {
   return (
-    <input
-      type="text"
-      placeholder="Ingrese su nombre"
-      onChange={handleInputChange}
-    />
+    <div className="form-group">
+      <label>{label}</label>
+      <input type="text" value={value} onChange={onChange} />
+    </div>
   );
 };
 
